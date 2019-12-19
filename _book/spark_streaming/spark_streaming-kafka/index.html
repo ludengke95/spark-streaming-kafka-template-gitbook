@@ -260,31 +260,29 @@
 <li>hdfsUrl&#xFF1A;&#x4F18;&#x96C5;&#x505C;&#x6B62;&#x65F6;&#x5FC5;&#x586B;&#xFF0C;&#x4FE1;&#x53F7;&#x6587;&#x4EF6;&#x9ED8;&#x8BA4;&#x653E;&#x5230;hdfs&#x4E0A;(&#x56E0;&#x4E3A;&#x4EE5;&#x96C6;&#x7FA4;&#x6A21;&#x5F0F;&#x542F;&#x52A8;spark application&#x7684;&#x65F6;&#x5019;&#x4E0D;&#x77E5;&#x9053;&#xFF0C;driver&#x7AEF;&#x4E0D;&#x77E5;&#x9053;&#x5728;&#x54EA;&#x53F0;&#x673A;&#x5668;&#xFF0C;&#x6240;&#x4EE5;&#x6700;&#x597D;&#x662F;&#x4F7F;&#x7528;&#x516C;&#x5171;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x7CFB;&#x7EDF;)&#x3002;</li>
 <li>stopSecond&#xFF1A;&#x4F18;&#x96C5;&#x505C;&#x6B62;&#x65F6;&#xFF0C;&#x8F6E;&#x8BE2;&#x68C0;&#x6D4B;&#x4FE1;&#x53F7;&#x6587;&#x4EF6;&#x7684;&#x65F6;&#x95F4;&#x95F4;&#x9694;</li>
 <li>checkPointPath&#xFF1A;checkPoint&#x5730;&#x5740;&#x6700;&#x597D;&#x662F;&#x4F7F;&#x7528;hdfs&#x5730;&#x5740;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x4E3A;&#x7A7A;&#x5219;&#x5224;&#x65AD;&#x542F;&#x7528;checkPoint&#xFF0C;&#x624B;&#x52A8;&#x7EF4;&#x62A4;&#x504F;&#x79FB;&#x91CF;&#x7684;&#x65F6;&#x5019;&#x6700;&#x597D;&#x4E0D;&#x8981;&#x4F7F;&#x7528;checkPoint&#x3002;<pre><code class="lang-java"> <span class="hljs-meta">@Test</span>
- <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testZk</span><span class="hljs-params">()</span></span>{
+ <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testZk</span><span class="hljs-params">()</span> </span>{
      String topic = <span class="hljs-string">&quot;spider-task&quot;</span>;
-     <span class="hljs-comment">/*
-     &#x5982;&#x679C;kafkaConfMap&#x8BBE;&#x7F6E;&#x4E86;group_id,SparkStreamingKafka&#x53EF;&#x4E0D;&#x8BBE;&#x7F6E;group_id
-      */</span>
-<span class="hljs-comment">//        String groupId = &quot;spark-template&quot;;</span>
-     Map&lt;Object,Object&gt; sparkConfMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
-     sparkConfMap.put(TemplateConf.APP_NAME,<span class="hljs-string">&quot;testZk&quot;</span>);
-     sparkConfMap.put(TemplateConf.MASTER,<span class="hljs-string">&quot;local[4]&quot;</span>);
-     sparkConfMap.put(TemplateConf.DURATION, Durations.seconds(<span class="hljs-number">10</span>));
+     <span class="hljs-comment">//&#x5982;&#x679C;kafkaConfMap&#x8BBE;&#x7F6E;&#x4E86;group_id,SparkStreamingKafka&#x53EF;&#x4E0D;&#x8BBE;&#x7F6E;group_id</span>
+     String groupId = <span class="hljs-string">&quot;spark-template&quot;</span>;
+     Map&lt;Object, Object&gt; sparkConfMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+     sparkConfMap.put(TemplateConfEnum.APP_NAME, <span class="hljs-string">&quot;testZk&quot;</span>);
+     sparkConfMap.put(TemplateConfEnum.MASTER, <span class="hljs-string">&quot;local[4]&quot;</span>);
+     sparkConfMap.put(TemplateConfEnum.DURATION, Durations.seconds(<span class="hljs-number">10</span>));
      sparkConfMap.put(<span class="hljs-string">&quot;spark.streaming.kafka.maxRatePerPartition&quot;</span>, <span class="hljs-string">&quot;10&quot;</span>);
-     Map&lt;String,Object&gt; kafkaConfMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+     Map&lt;String, Object&gt; kafkaConfMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
      kafkaConfMap.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, <span class="hljs-string">&quot;192.168.2.58:9092,192.168.2.58:10092,192.168.2.58:11092&quot;</span>);
      kafkaConfMap.put(ConsumerConfig.GROUP_ID_CONFIG, <span class="hljs-string">&quot;spark-template&quot;</span>);
      kafkaConfMap.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, <span class="hljs-string">&quot;earliest&quot;</span>);
      kafkaConfMap.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, <span class="hljs-keyword">false</span>);
      kafkaConfMap.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
      kafkaConfMap.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-     Map&lt;ZkConf,Object&gt; zkConfMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
-     zkConfMap.put(ZkConf.URL,<span class="hljs-string">&quot;127.0.0.1:2181&quot;</span>);
-     zkConfMap.put(ZkConf.CONNECTION_TIMEOUT,<span class="hljs-string">&quot;3000&quot;</span>);
+     Map&lt;ZkConfEnum, Object&gt; zkConfMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+     zkConfMap.put(ZkConfEnum.URL, <span class="hljs-string">&quot;127.0.0.1:2181&quot;</span>);
+     zkConfMap.put(ZkConfEnum.CONNECTION_TIMEOUT, <span class="hljs-string">&quot;3000&quot;</span>);
      SparkStreamingKafka spark = SparkStreamingKafka.create(sparkConfMap, kafkaConfMap);
 <span class="hljs-comment">//        SparkStreamingKafka spark = SparkStreamingKafka.create(sparkConfMap, kafkaConfMap,&quot;./checkpointStreamingZk&quot;);</span>
      spark.setTopicName(topic);
-     spark.setOffsetTemplate(<span class="hljs-keyword">new</span> OffsetInZookeeperTemplate(zkConfMap,<span class="hljs-string">&quot;/ldk&quot;</span>));
+     spark.setOffsetTemplate(<span class="hljs-keyword">new</span> OffsetInZookeeperTemplate(zkConfMap, <span class="hljs-string">&quot;/ldk&quot;</span>));
      spark.start();
  }
 </code></pre>
@@ -333,7 +331,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"spark_streaming-kafka","level":"1.2.1","depth":2,"next":{"title":"offset in kafka","level":"1.2.1.1","depth":3,"path":"spark_streaming/spark_streaming-kafka/offsetinkafka.md","ref":"spark_streaming/spark_streaming-kafka/offsetinkafka.md","articles":[]},"previous":{"title":"spark_streaming","level":"1.2","depth":1,"path":"spark_streaming/README.md","ref":"spark_streaming/README.md","articles":[{"title":"spark_streaming-kafka","level":"1.2.1","depth":2,"path":"spark_streaming/spark_streaming-kafka/README.md","ref":"spark_streaming/spark_streaming-kafka/README.md","articles":[{"title":"offset in kafka","level":"1.2.1.1","depth":3,"path":"spark_streaming/spark_streaming-kafka/offsetinkafka.md","ref":"spark_streaming/spark_streaming-kafka/offsetinkafka.md","articles":[]},{"title":"offset in mysql/TiDB","level":"1.2.1.2","depth":3,"path":"spark_streaming/spark_streaming-kafka/offsetinmysql.md","ref":"spark_streaming/spark_streaming-kafka/offsetinmysql.md","articles":[]},{"title":"offset in zookeeper","level":"1.2.1.3","depth":3,"path":"spark_streaming/spark_streaming-kafka/offsetinzookeeper.md","ref":"spark_streaming/spark_streaming-kafka/offsetinzookeeper.md","articles":[]}]},{"title":"spark_state_streaming-kafka","level":"1.2.2","depth":2,"path":"spark_streaming/spark_state_streaming-kafka/README.md","ref":"spark_streaming/spark_state_streaming-kafka/README.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"spark_streaming/spark_streaming-kafka/README.md","mtime":"2019-12-19T02:04:10.867Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-12-19T08:49:27.489Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"spark_streaming-kafka","level":"1.2.1","depth":2,"next":{"title":"offset in kafka","level":"1.2.1.1","depth":3,"path":"spark_streaming/spark_streaming-kafka/offsetinkafka.md","ref":"spark_streaming/spark_streaming-kafka/offsetinkafka.md","articles":[]},"previous":{"title":"spark_streaming","level":"1.2","depth":1,"path":"spark_streaming/README.md","ref":"spark_streaming/README.md","articles":[{"title":"spark_streaming-kafka","level":"1.2.1","depth":2,"path":"spark_streaming/spark_streaming-kafka/README.md","ref":"spark_streaming/spark_streaming-kafka/README.md","articles":[{"title":"offset in kafka","level":"1.2.1.1","depth":3,"path":"spark_streaming/spark_streaming-kafka/offsetinkafka.md","ref":"spark_streaming/spark_streaming-kafka/offsetinkafka.md","articles":[]},{"title":"offset in mysql/TiDB","level":"1.2.1.2","depth":3,"path":"spark_streaming/spark_streaming-kafka/offsetinmysql.md","ref":"spark_streaming/spark_streaming-kafka/offsetinmysql.md","articles":[]},{"title":"offset in zookeeper","level":"1.2.1.3","depth":3,"path":"spark_streaming/spark_streaming-kafka/offsetinzookeeper.md","ref":"spark_streaming/spark_streaming-kafka/offsetinzookeeper.md","articles":[]}]},{"title":"spark_state_streaming-kafka","level":"1.2.2","depth":2,"path":"spark_streaming/spark_state_streaming-kafka/README.md","ref":"spark_streaming/spark_state_streaming-kafka/README.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"spark_streaming/spark_streaming-kafka/README.md","mtime":"2019-12-19T10:43:00.827Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-12-19T10:45:25.136Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -341,10 +339,6 @@
         
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
-    
-        
-        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
