@@ -4,6 +4,7 @@
 
 ## 如何使用
 
+### 使用说明
 以offset存储在zk为示例，sparkConfMap，kafkaConfMap与Spark Streaming Kafka使用一致。
 不同点：
 + StateStreaming增加了泛型，`<Long,String>`对应的State中的key的类型和value的类型，需要在声明的时候指定
@@ -14,6 +15,7 @@
    - 结构转化：ConsumerRecord<String, String>转化为Tuple2(value.length(),value)，以value的长度为key，value作为value。
 + 增加了timeOut对象，作用：用于控制Key的过期时间如果，key过期了，使用key对应的新value作为新值。
 + 默认实现可以再配置SparkStateStreamingKafka对象的时候不设置，会自动配置。
+
 ``` java
     @Test
     public void testZk(){
@@ -46,8 +48,8 @@
 
 ## 功能
 
-[x] 自定义更新规则/自定义流转化规则
-[x] 全部数据快照处理
-[x] offset auto自定义存储
-[  ] 初始化key，value
-[  ] 增加数据快照处理
++ [x] 自定义更新规则/自定义流转化规则
++ [x] 全部数据快照处理
++ [x] offset auto自定义存储
++ [ ] 初始化key，value
++ [ ] 新增数据部分的快照处理
