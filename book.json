@@ -1,0 +1,40 @@
+{
+  "title": "spark-template",
+  "author": "ludengke95",
+  "description": "简化更多人的spark开发",
+  "language": "zh-hans",
+  "links": {
+    "sidebar": {
+      "spark-template(GitHub)": "https://github.com/ludengke95/spark-template",
+      "spark-template-gitbook(GitHub)": "https://github.com/ludengke95/spark-template-gitbook"
+    }
+  },
+  "plugins": [
+    "-lunr",
+    "-search",
+    "search-pro",
+    "expandable-chapters",
+    "chapter-fold",
+    "copy-code-button",
+    "todo",
+    "advanced-emoji",
+    "github",
+    "splitter",
+    "ancre-navigation",
+    "flexible-alerts",
+    "pageview-count"
+  ],
+  "pluginsConfig": {
+    "github": {
+      "url": "https://github.com/ludengke95"
+    },
+    "flexible-alerts": {
+      "style": "callout",
+      "comment": {
+        "label": "Comment",
+        "icon": "fa fa-comments",
+        "className": "info"
+      }
+    }
+  }
+}
