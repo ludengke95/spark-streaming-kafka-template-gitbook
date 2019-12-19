@@ -1,0 +1,373 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>spark_streaming-kafka · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="offsetinkafka.html" />
+    
+    
+    <link rel="prev" href="../" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    spark_streaming
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.2.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    spark_streaming-kafka
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="offsetinkafka.html">
+            
+                <a href="offsetinkafka.html">
+            
+                    
+                    offset in kafka
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.2" data-path="offsetinmysql.html">
+            
+                <a href="offsetinmysql.html">
+            
+                    
+                    offset in mysql/TiDB
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.3" data-path="offsetinzookeeper.html">
+            
+                <a href="offsetinzookeeper.html">
+            
+                    
+                    offset in zookeeper
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../spark_state_streaming-kafka/">
+            
+                <a href="../spark_state_streaming-kafka/">
+            
+                    
+                    spark_state_streaming-kafka
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >spark_streaming-kafka</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="sparkstreaming-kafka">spark_streaming-kafka</h1>
+<p>&#x8FD9;&#x4E2A;&#x6A21;&#x5757;&#x5B9E;&#x73B0;&#x4E86;spark streaming &#x8FDE;&#x63A5;kafka&#x7EC4;&#x4EF6;&#xFF0C;&#x5E76;&#x4E14;&#x4ECE;&#x4E2D;&#x83B7;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x624B;&#x52A8;&#x7EF4;&#x62A4;offset&#x5230;&#x5185;&#x90E8;&#x6216;&#x8005;&#x5916;&#x90E8;&#x5B58;&#x50A8;&#x4ECB;&#x8D28;&#x3002;
+&#x672C;&#x6A21;&#x5757;&#x63D0;&#x4F9B;&#x4E86;&#x57FA;&#x672C;offset&#x5B58;&#x50A8;&#x65B9;&#x6848;&#xFF0C;&#x5DF2;&#x7ECF;&#x9884;&#x5B9A;&#x4E49;&#x4E86;&#x63A5;&#x53E3;&#xFF0C;&#x80FD;&#x591F;&#x9002;&#x5E94;&#x4E0D;&#x540C;&#x7684;&#x573A;&#x666F;&#x3002;</p>
+<h3 id="&#x5F3A;&#x70C8;&#x5EFA;&#x8BAE;">&#x5F3A;&#x70C8;&#x5EFA;&#x8BAE;</h3>
+<ol>
+<li>&#x624B;&#x52A8;&#x7EF4;&#x62A4;offset&#xFF0C;&#x53EF;&#x4EE5;&#x624B;&#x52A8;&#x8C03;&#x6574;&#x6D88;&#x8D39;&#x7684;&#x8FDB;&#x5EA6;&#xFF0C;&#x8DF3;&#x8FC7;&#x6307;&#x5B9A;&#x4F4D;&#x7F6E;&#x6216;&#x8005;&#x91CD;&#x590D;&#x5904;&#x7406;&#x6307;&#x5B9A;&#x4F4D;&#x7F6E;&#x7684;&#x6570;&#x636E;&#x3002;</li>
+<li>&#x6700;&#x597D;&#x4E0D;&#x8981;&#x542F;&#x7528;checkpoint&#x673A;&#x5236;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;&#x91CD;&#x590D;&#x6D88;&#x8D39;&#x7684;&#x95EE;&#x9898;&#x3002;</li>
+</ol>
+<h2 id="&#x5982;&#x4F55;&#x4F7F;&#x7528;">&#x5982;&#x4F55;&#x4F7F;&#x7528;</h2>
+<p>&#x4EC5;&#x4EC5;20&#x884C;&#x5DE6;&#x53F3;&#x4EE3;&#x7801;&#x5C31;&#x80FD;&#x591F;&#x5B8C;&#x6210;Spark Streaming &#x548C;kafka&#x7EC4;&#x4EF6;&#x7684;&#x6700;&#x7B80;&#x5355;&#x4F7F;&#x7528;&#xFF0C;&#x5927;&#x5927;&#x51CF;&#x5C11;&#x4E86;&#x5F00;&#x53D1;&#x91CF;&#x3002;</p>
+<h3 id="&#x6CE8;&#x610F;">&#x6CE8;&#x610F;</h3>
+<ol>
+<li>sparkConfMap&#xFF1A;&#x50A8;&#x5B58;&#x4E86;&#x57FA;&#x672C;SparkConf&#x4FE1;&#x606F;&#x548C;&#x81EA;&#x5B9A;&#x4E49;&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#x3002;&#x5177;&#x4F53;&#x4FE1;&#x606F;&#x67E5;&#x770B;com.opensharing.bigdata.conf.TemplateConf&#x548C;SparkConf&#x5B98;&#x65B9;&#x914D;&#x7F6E;&#x3002;</li>
+<li>kafkaConfMap&#xFF1A;&#x5B58;&#x50A8;&#x4E86;Kafka&#x7684;&#x57FA;&#x672C;&#x914D;&#x7F6E;&#xFF0C;key&#x662F;&#x53D6;&#x4E8E;kafka&#x5B98;&#x65B9;&#x7684;&#x914D;&#x7F6E;key&#x503C;&#xFF0C;&#x4E0E;&#x5B98;&#x65B9;&#x7684;&#x5B8C;&#x5168;&#x4E00;&#x81F4;</li>
+<li>SparkStreamingKafka.setHandler&#xFF1A;&#x7528;&#x4E8E;&#x914D;&#x7F6E;&#x53D6;&#x51FA;&#x6570;&#x636E;&#x4E4B;&#x540E;&#x5982;&#x4F55;&#x5904;&#x7406;&#xFF0C;&#x7531;&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x5B9E;&#x73B0;&#xFF0C;&#x9ED8;&#x8BA4;&#x5B9E;&#x73B0;&#x4E3A;ConsoleKafkaRDDHandler&#xFF0C;&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x591A;&#x4E2A;&#xFF0C;&#x591A;&#x4E2A;&#x4E32;&#x884C;&#x6267;&#x884C;&#xFF0C;&#x65E0;&#x9700;&#x7528;&#x6237;&#x6301;&#x4E45;&#x5316;&#xFF0C;&#x4F1A;&#x6839;&#x636E;&#x7528;&#x6237;&#x8BBE;&#x7F6E;&#x7684;Handler&#x6570;&#x91CF;&#x6765;&#x5224;&#x65AD;&#x662F;&#x5426;&#x542F;&#x7528;&#x6301;&#x4E45;&#x5316;&#x3002;</li>
+<li>offsetTemplate&#xFF1A;offset&#x7684;&#x5B58;&#x50A8;&#x6A21;&#x677F;&#xFF0C;&#x4F7F;&#x7528;&#x83B7;&#x53D6;/&#x5B58;&#x50A8;offset&#x7684;&#x503C;&#xFF0C;&#x9ED8;&#x8BA4;&#x6709;&#x4E09;&#x4E2A;&#x5B9E;&#x73B0;OffsetInKafkaTemplate&#xFF0C;OffsetInMysqlTemplate&#xFF0C;OffsetInZookeeperTemplate&#x3002;&#x4E0D;&#x6EE1;&#x8DB3;&#x7528;&#x6237;&#x9700;&#x6C42;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x5B9E;&#x73B0;OffsetTemplate&#x63A5;&#x53E3;&#x3002;<ul>
+<li>OffsetInMysqlTemplate&#xFF1A;&#x542F;&#x7528;&#x4E86;Hutools&#x7684;&#x6570;&#x636E;&#x8FDE;&#x63A5;&#x914D;&#x7F6E;&#xFF0C;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x6309;&#x7167;&#x8FD9;&#x4E2A;&#x7C7B;&#x5B9E;&#x73B0;&#x81EA;&#x5DF1;&#x7684;&#x6570;&#x636E;&#x5E93;&#x8FDE;&#x63A5;&#xFF0C;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x8BFB;&#x53D6;&#x3002;</li>
+</ul>
+</li>
+<li>stopFilePath&#xFF1A;&#x7528;&#x4E8E;&#x914D;&#x7F6E;&#x4F18;&#x96C5;&#x505C;&#x6B62;&#x7684;&#x4FE1;&#x53F7;&#x6587;&#x4EF6;&#x5730;&#x5740;&#x3002;Spark Streaming&#x91C7;&#x7528;&#x7684;&#x662F;&#x5224;&#x65AD;&#x4FE1;&#x53F7;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x5B58;&#x5728;&#x6765;&#x8C03;&#x7528;stop&#x51FD;&#x6570;&#x6765;&#x8FBE;&#x5230;&#x4F18;&#x96C5;&#x505C;&#x6B62;&#x7684;&#x76EE;&#x7684;&#xFF0C;<strong>&#x66B4;&#x529B;&#x505C;&#x6B62;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x6D88;&#x606F;&#x7684;&#x91CD;&#x590D;&#x6D88;&#x8D39;</strong>&#x3002;</li>
+</ol>
+<pre><code class="lang-java">    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testZk</span><span class="hljs-params">()</span></span>{
+        String topic = <span class="hljs-string">&quot;spider-task&quot;</span>;
+        <span class="hljs-comment">/*
+        &#x5982;&#x679C;kafkaConfMap&#x8BBE;&#x7F6E;&#x4E86;group_id,SparkStreamingKafka&#x53EF;&#x4E0D;&#x8BBE;&#x7F6E;group_id
+         */</span>
+<span class="hljs-comment">//        String groupId = &quot;spark-template&quot;;</span>
+        Map&lt;Object,Object&gt; sparkConfMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+        sparkConfMap.put(TemplateConf.APP_NAME,<span class="hljs-string">&quot;testZk&quot;</span>);
+        sparkConfMap.put(TemplateConf.MASTER,<span class="hljs-string">&quot;local[4]&quot;</span>);
+        sparkConfMap.put(TemplateConf.DURATION, Durations.seconds(<span class="hljs-number">10</span>));
+        sparkConfMap.put(<span class="hljs-string">&quot;spark.streaming.kafka.maxRatePerPartition&quot;</span>, <span class="hljs-string">&quot;10&quot;</span>);
+        Map&lt;String,Object&gt; kafkaConfMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+        kafkaConfMap.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, <span class="hljs-string">&quot;192.168.2.58:9092,192.168.2.58:10092,192.168.2.58:11092&quot;</span>);
+        kafkaConfMap.put(ConsumerConfig.GROUP_ID_CONFIG, <span class="hljs-string">&quot;spark-template&quot;</span>);
+        kafkaConfMap.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, <span class="hljs-string">&quot;earliest&quot;</span>);
+        kafkaConfMap.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, <span class="hljs-keyword">false</span>);
+        kafkaConfMap.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        kafkaConfMap.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        Map&lt;ZkConf,Object&gt; zkConfMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+        zkConfMap.put(ZkConf.URL,<span class="hljs-string">&quot;127.0.0.1:2181&quot;</span>);
+        zkConfMap.put(ZkConf.CONNECTION_TIMEOUT,<span class="hljs-string">&quot;3000&quot;</span>);
+        SparkStreamingKafka spark = SparkStreamingKafka.create(sparkConfMap, kafkaConfMap);
+<span class="hljs-comment">//        SparkStreamingKafka spark = SparkStreamingKafka.create(sparkConfMap, kafkaConfMap,&quot;./checkpointStreamingZk&quot;);</span>
+        spark.setTopicName(topic);
+        spark.setOffsetTemplate(<span class="hljs-keyword">new</span> OffsetInZookeeperTemplate(zkConfMap,<span class="hljs-string">&quot;/ldk&quot;</span>));
+        spark.start();
+    }
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../" class="navigation navigation-prev " aria-label="Previous page: spark_streaming">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="offsetinkafka.html" class="navigation navigation-next " aria-label="Next page: offset in kafka">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"spark_streaming-kafka","level":"1.2.1","depth":2,"next":{"title":"offset in kafka","level":"1.2.1.1","depth":3,"path":"spark_streaming/spark_streaming-kafka/offsetinkafka.md","ref":"spark_streaming/spark_streaming-kafka/offsetinkafka.md","articles":[]},"previous":{"title":"spark_streaming","level":"1.2","depth":1,"path":"spark_streaming/README.md","ref":"spark_streaming/README.md","articles":[{"title":"spark_streaming-kafka","level":"1.2.1","depth":2,"path":"spark_streaming/spark_streaming-kafka/README.md","ref":"spark_streaming/spark_streaming-kafka/README.md","articles":[{"title":"offset in kafka","level":"1.2.1.1","depth":3,"path":"spark_streaming/spark_streaming-kafka/offsetinkafka.md","ref":"spark_streaming/spark_streaming-kafka/offsetinkafka.md","articles":[]},{"title":"offset in mysql/TiDB","level":"1.2.1.2","depth":3,"path":"spark_streaming/spark_streaming-kafka/offsetinmysql.md","ref":"spark_streaming/spark_streaming-kafka/offsetinmysql.md","articles":[]},{"title":"offset in zookeeper","level":"1.2.1.3","depth":3,"path":"spark_streaming/spark_streaming-kafka/offsetinzookeeper.md","ref":"spark_streaming/spark_streaming-kafka/offsetinzookeeper.md","articles":[]}]},{"title":"spark_state_streaming-kafka","level":"1.2.2","depth":2,"path":"spark_streaming/spark_state_streaming-kafka/README.md","ref":"spark_streaming/spark_state_streaming-kafka/README.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"spark_streaming/spark_streaming-kafka/README.md","mtime":"2019-12-18T11:37:48.785Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-12-19T01:33:59.890Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
