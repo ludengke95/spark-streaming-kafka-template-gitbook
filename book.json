@@ -13,6 +13,7 @@
     "-lunr",
     "-search",
     "search-pro",
+    "back-to-top-button",
     "expandable-chapters",
     "chapter-fold",
     "copy-code-button",
@@ -20,7 +21,6 @@
     "advanced-emoji",
     "github",
     "splitter",
-    "ancre-navigation",
     "flexible-alerts",
     "pageview-count"
   ],
